@@ -4,18 +4,7 @@ import re
 import sys
 import time
 from deck_values import deck_values
-
-# The player has a total amount of money (pot), defined at the begining of the game. The minimum bet is 5, thus the minimum pot is also 5.
-def money_on_the_table():
-    pot = 0
-    while pot < 5:
-        pot = input("How much money do you want to bet on this table. The minimum bet is $5\n")
-        if re.findall(r'(?<!\.)\b[0-9]+\b(?!\.)',pot):
-            pot = int(pot)
-        else:
-            print("ERROR: This is not a valid input. Only integers accepted")
-            sys.exit()
-    return(pot)
+from pot import money_on_the_table
 
 #The player places the bet at the beginning of each round
 def bet_placing(pot):
