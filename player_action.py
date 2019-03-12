@@ -1,3 +1,4 @@
+import time
 
 def decide_player_action(player_hand, player_hand_value):
     """
@@ -6,6 +7,7 @@ def decide_player_action(player_hand, player_hand_value):
     :param player_hand_value: value related to the hand of the player
     :return: (str) 'hit' or 'pass'
     """
+    time.sleep(1)
     options = ["hit", "pass"]
     player_choice = ""
     print("Your hand is", player_hand, "You are now at", player_hand_value)
