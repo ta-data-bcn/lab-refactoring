@@ -45,5 +45,5 @@ def shuffle_caesarian():
     '''
     d = deque(retrieve_alphabet())
     d.rotate(getKey())
-    key_caesar = ''.join(list(d))
-    return key_caesar
+    key = ''.join(list(d))
+    return key
