@@ -5,16 +5,12 @@ import string
 from collections import deque
 
 
-# In[2]:
-
 
 # getting the cleaned ascii
 alph = string.printable
 alphabet_split = alph.split(" ")
 alphabet = alphabet_split[0]
 
-
-# In[3]:
 
 
 # Function that allows to create your own key with any characters that a language might use 
@@ -26,8 +22,6 @@ def shuffle_alphabet(base = alphabet):
     key = ''.join(key_to_shuffle)
     return key
 
-
-# In[4]:
 
 
 # Finding maximum key size for Caesar cypher
