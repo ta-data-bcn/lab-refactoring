@@ -44,12 +44,11 @@ def guess_the_number():
     
     Number_of_guesses_left = 8
 
-
-    # choose number and set the condition to play the game:
+    # choose number and set the condition to play the game as detailed above:
     
     your_number = condition_to_play_the_game()
 
-    # random function creates a random number to be picked in order to win:
+    # random function creates a random number between 1 and 100 to be picked in order to win:
         
     random_number = random.randint(1,100)
 
@@ -61,13 +60,20 @@ def guess_the_number():
     while your_number != random_number:
 
         if your_number > random_number:
+            
+            # subtract one from number of guesses:
 
             Number_of_guesses_left -= 1
 
             print(f' Your number of guesses left is {Number_of_guesses_left}')
+            
+            # ask the player to choose a higher number:
 
             your_number = condition_to_play_the_game("Choose lower number. Your number is ")
 
+            # if the number of guesses left reaches 0, break the while loop 
+            # and player loses the game
+        
             if Number_of_guesses_left == 0:
 
                 break
@@ -75,12 +81,19 @@ def guess_the_number():
 
         elif your_number < random_number:
 
+            # subtract one from number of guesses:
+
             Number_of_guesses_left -= 1
 
             print(f' Your number of guesses left is {Number_of_guesses_left}')
+            
+            # ask the player to choose a higher number:
 
             your_number = condition_to_play_the_game("Choose higher number. Your number is ")
 
+            # if the number of guesses left reaches 0, break the while loop 
+            # and player loses the game
+            
             if Number_of_guesses_left == 0:
 
                 break
@@ -97,6 +110,8 @@ def guess_the_number():
         print("YOU LOSE!")
 
         print(f' The random number was {random_number}')
+        
+        # if the players loses, the game restarts: 
 
         guess_the_number()
 
