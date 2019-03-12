@@ -84,8 +84,6 @@ def player_plays():
     """
     y, x = player_loop()
 
-    # TODO : explain more this code
-
     while playboard[y][x] == "X" or playboard[y][x] == "O":
         print("You have chosen an occupied position! Please, repeat your play")
         y, x = player_loop()
@@ -209,31 +207,19 @@ print("The machine starts playing!")
 while True:
     # The loop keeps the game running until a winning condition is fulfilled or is a draw.
 
-    ans_y_mac, ans_x_mac = machine_plays()
-
-    playboard[ans_y_mac][ans_x_mac] = "X"
-
+    y_mac, x_mac = machine_plays()
+    playboard[y_mac][x_mac] = "X"
     show_play(playboard)
-
     if winning_cond() is True:
-
         break
-
     if draw_game() is True:
-
         break
 
-    ans_y_hum, ans_x_hum = player_plays()
-
-    playboard[ans_y_hum][ans_x_hum] = "O"
-
+    y_hum, x_hum = player_plays()
+    playboard[y_hum][x_hum] = "O"
     show_play(playboard)
-
     if winning_cond() is True:
-
         break
-
     if draw_game() is True:
-
         break
 
