@@ -5,7 +5,8 @@ from collections import deque
 
 def retrieve_alphabet():
     '''
-
+    Retrieves ASCII alphabet, splits it at the space character and returns the first string containing
+    only non whitespace characters
     :return: str
     '''
     alphabet = string.printable.split(' ')[0]
@@ -14,7 +15,7 @@ def retrieve_alphabet():
 
 def shuffle_alphabet():
     '''
-
+    Takes the alphabet from the retrieve_alphabet function and creates a new alphabet shuffled randomly
     :return: str
     '''
     key_to_shuffle = list(retrieve_alphabet())
@@ -25,7 +26,7 @@ def shuffle_alphabet():
 
 def getKey():
     '''
-
+    Asks the user to introduce a key for later use within the length of the alphabet
     :return: int
     '''
     key = 0
