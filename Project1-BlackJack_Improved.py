@@ -4,22 +4,9 @@ import time
 from deck_values import deck_values
 from pot import define_pot
 from bet_placing import place_bet
+from cards_dealing import deal_cards
+from player_action import decide_player_action, decide_keep_playing
 
-#The dealer deals the initial hands for a given deck. Retuns a tuple(?) with 2 lists, 2 items each, the player's hand and the dealer's hand
-#WARNING when printing the result, the second card of the dealer's hand should not be shown
-def deal_cards(deck):
-    player_hand = [random.choice(deck) for x in range(2)]
-    dealer_hand = [random.choice(deck) for x in range(2)]
-    return player_hand, dealer_hand
-
-#The player chooses what to do
-def player_action(values):
-    options = ["hit","pass"]
-    player_choice = ""
-    print("Your hand is",player_hand,"You are now at",hand_sum(player_hand,values))
-    while player_choice not in options:
-        player_choice = str(input(f"You can {options}, what would you like to do?\n"))
-    return player_choice
 
 #We calculate the sum of a hand. Needs a list and a dictionary
 def hand_sum(hand,values):
@@ -28,17 +15,7 @@ def hand_sum(hand,values):
         total += values[card]
     return total
 
-#We ask if the player wants to keep playing
-def keep_playing():
-    if pot >= 5:
-        keep = input("Do you want to keep playing Y/N ")
-        while keep not in ['Y','N']:
-            keep = input("Do you want to keep playing Y/N ")
-        return keep == 'Y'
-    else:
-        print("You don't have enough chips on your pot :(")
-        return False
-    
+
 #Build the game:
 #Ask the player how much money he wants to put in the pot
 pot = define_pot()
@@ -78,9 +55,9 @@ while give_me_more:
     #We give the player the choice to take action
     time.sleep(1)
     if player_two_as_in_hand == True:
-        action = player_action(deck_values(player_two_as_in_hand))
+        action = decide_player_action(player_hand, player_sum)
     else:
-        action = player_action(deck_values(player_two_as_in_hand))
+        action = decide_player_action(player_hand, player_sum)
 
     while action == "hit":
         player_hand.append(random.choice(deck))
@@ -164,11 +141,7 @@ while give_me_more:
             else:
                 print(f"It's a split\n You have now ${pot} in your pot")
 
-    give_me_more = keep_playing()
-
-
-# In[ ]:
-
+    give_me_more = decide_keep_playing(pot)
 
 
 
