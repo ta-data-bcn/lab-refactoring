@@ -2,6 +2,7 @@ import random
 import string
 from collections import deque
 
+
 def retrieve_alphabet():
     '''
 
