@@ -1,23 +1,15 @@
 # Note: I'm considering and infinite deck of cards
 import random
 import time
-from deck_values import deck_values
+from deck_values import deck_values, hand_sum
 from pot import define_pot
 from bet_placing import place_bet
 from cards_dealing import deal_cards
 from player_action import decide_player_action, decide_keep_playing
 
 
-#We calculate the sum of a hand. Needs a list and a dictionary
-def hand_sum(hand,values):
-    total = 0
-    for card in hand:
-        total += values[card]
-    return total
-
-
-#Build the game:
-#Ask the player how much money he wants to put in the pot
+# Build the game:
+# Ask the player how much money he wants to put in the pot
 pot = define_pot()
 
 #We create the deck
@@ -78,11 +70,11 @@ while give_me_more:
                 action = "pass"
                 player_busted = True
             else:
-                action = player_action(deck_values(player_two_as_in_hand))
+                action = decide_player_action(player_hand, player_sum)
         elif player_two_as_in_hand:
-            action = player_action(deck_values(player_two_as_in_hand))
+            action = decide_player_action(player_hand, player_sum)
         else:
-            action = player_action(deck_values(player_two_as_in_hand))
+            action = decide_player_action(player_hand, player_sum)
 
     #Dealer's play
     dealer_sum = hand_sum(dealer_hand,deck_values(player_two_as_in_hand))

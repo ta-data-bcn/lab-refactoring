@@ -16,3 +16,17 @@ def deck_values(a_as_one):
         else:
             values_of_the_deck[card] = int(card)
     return values_of_the_deck
+
+
+def hand_sum(hand, values):
+    """
+    Calculate the sum of a hand given a hand (list) and the values (dictionary)
+
+    :param hand: (list) list of cards we want to calculate the value of
+    :param values: (dict) value sof each card
+    :return: (int) total sum of the value of the given hand
+    """
+    total = 0
+    for card in hand:
+        total += values[card]
+    return total
