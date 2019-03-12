@@ -1,4 +1,5 @@
 import re
+import sys
 
 
 def define_pot():
@@ -15,4 +16,4 @@ def define_pot():
         else:
             print("ERROR: This is not a valid input. Only integers accepted")
             sys.exit()
-    return(pot)
+    return pot
