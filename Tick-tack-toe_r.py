@@ -1,5 +1,5 @@
 from beautifultable import BeautifulTable
-import random
+from random import randint
 
 
 def show_play(board):
@@ -32,12 +32,12 @@ def machine_plays():
     """
 
     print("Machine's turn!")
-    ans_x_mach = random.randint(0, 2)
-    ans_y_mach = random.randint(0, 2)
+    ans_x_mach = randint(0, 2)
+    ans_y_mach = randint(0, 2)
 
     while playboard[ans_y_mach][ans_x_mach] == "X" or playboard[ans_y_mach][ans_x_mach] == "O":
-        ans_x_mach = random.randint(0, 2)
-        ans_y_mach = random.randint(0, 2)
+        ans_x_mach = randint(0, 2)
+        ans_y_mach = randint(0, 2)
 
     return ans_y_mach, ans_x_mach
 
@@ -55,8 +55,6 @@ def player_loop():
     while answer_x not in possible_x:
         answer_x = input("You didn't write a 1, 2 or 3. Please, choose the horizontal coordinate: 1, 2 or 3: ")
     answer_x = int(answer_x) - 1
-
-    # TODO : explain more this code
 
     answer_y = input("And now the vertical coordinate: x, y or z: ")
     possible_y = ['x', 'y', 'z']
