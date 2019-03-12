@@ -42,6 +42,16 @@ def machine_plays():
     return ans_y_mach, ans_x_mach
 
 
+def transform(y):
+    """
+    Transform the values x, y or z by 0, 1 or 2, respectively.
+    :param y:str that has to be x, y or z.
+    :return: int: 0, 1 or 2
+    """
+    d_letter_to_num = {"x": 0, "y": 1, "z": 2}
+    return d_letter_to_num[y]
+
+
 def player_loop():
     """
     Ask the player which position wants to play.
@@ -61,16 +71,7 @@ def player_loop():
     while answer_y not in possible_y:
         answer_y = input("You didn't write a x, y or z. Please, choose the vertical coordinate: x, y or z: ")
 
-    # Transform the letters by numbers.
-    trans_y = ""
-    if answer_y == "x":
-        trans_y = 0
-    elif answer_y == "y":
-        trans_y = 1
-    elif answer_y == "z":
-        trans_y = 2
-
-    return trans_y, answer_x
+    return transform(answer_y), answer_x
 
 
 def player_plays():
@@ -191,9 +192,9 @@ def draw_game():
 print("Welcome to Tick-tack-toe 3x3 game! You vs the drunk machine will be an amazing match!. "
       "Machine takes X and human O. Good luck!")
 
-playboard = [["", "", ""],
-             ["", "", ""],
-             ["", "", ""]]
+playboard = [["", "X", "O"],
+             ["X", "O", "O"],
+             ["", "X", ""]]
 
 print("The initial board is:")
 
