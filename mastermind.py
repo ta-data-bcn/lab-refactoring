@@ -4,13 +4,13 @@ import random
 # List of colors available and max number of tries for the game
 options = ['blue', 'green', 'red', 'yellow', 'white', 'black']
 tries = 10
-number_colors = 5
+number_colors = 4
 
 
 # List of functions used
 def machine_picks_colors():
     """
-    The computer picks a random 4-color-code from the ones available
+    The computer picks a random color-code from the ones available
     in the list 'options'.
 
     Returns:
@@ -23,7 +23,7 @@ def machine_picks_colors():
 
 def player_picks_colors():
     """
-    The function asks the player to pick a 4-color-code and returns it.
+    The function asks the player to pick a color-code and returns it.
 
     Returns:
       A list with the 4-color-code picked by the user.
