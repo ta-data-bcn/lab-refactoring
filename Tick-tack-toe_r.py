@@ -42,15 +42,15 @@ def machine_plays():
     return ans_y_mach, ans_x_mach
 
 
-def player_plays():
+def player_loop():
     """
     Ask the player which position wants to play.
-    The programs keeps asking until the player select (with the correct characters) an empty position.
+    The programs keeps asking until the player select a correct spelled position.
     ------
     :return: two int
     """
-
-    answer_x = input("Your turn! Choose where you want to play. First, choose the horizontal coordinate: 1, 2 or 3: ")
+    answer_x = input(
+        "Your turn! Choose where you want to play. First, choose the horizontal coordinate: 1, 2 or 3: ")
     possible_x = ['1', '2', '3']
     while answer_x not in possible_x:
         answer_x = input("You didn't write a 1, 2 or 3. Please, choose the horizontal coordinate: 1, 2 or 3: ")
@@ -72,32 +72,25 @@ def player_plays():
     elif answer_y == "z":
         trans_y = 2
 
+    return trans_y, answer_x
+
+
+def player_plays():
+    """
+    Runs the player_loop function to get the player position. Then, check if the player has chosen an occupied position.
+    If so, ask the player to select a new position.
+    ------
+    :return: two int
+    """
+    y, x = player_loop()
+
     # TODO : explain more this code
 
-    while playboard[trans_y][answer_x] == "X" or playboard[trans_y][answer_x] == "O":
+    while playboard[y][x] == "X" or playboard[y][x] == "O":
+        print("You have chosen an occupied position! Please, repeat your play")
+        y, x = player_loop()
 
-        answer_x = input("You have chosen an occupied position. Please, choose an empty one. \n"
-                         "First, choose the horizontal coordinate: 1, 2 or 3: ")
-        possible_x = ['1', '2', '3']
-        while answer_x not in possible_x:
-            answer_x = input("You didn't write a 1, 2 or 3. Please, choose the horizontal coordinate: 1, 2 or 3: ")
-
-        answer_x = int(answer_x) - 1
-
-        answer_y = input("And now the vertical coordinate: x, y or z: ")
-        possible_y = ['x', 'y', 'z']
-        while answer_y not in possible_y:
-            answer_y = input("You didn't write a x, y or z. Please, choose the vertical coordinate: x, y or z: ")
-
-        trans_y = ""
-        if answer_y == "x":
-            trans_y = 0
-        elif answer_y == "y":
-            trans_y = 1
-        elif answer_y == "z":
-            trans_y = 2
-
-    return trans_y, answer_x
+    return y, x
 
 
 def winning_cond():
