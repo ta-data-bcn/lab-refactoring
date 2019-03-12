@@ -16,28 +16,42 @@ def encrypt_decrypt(m, a, k):
 
 
 
-def encrypt_message():
-    choice = input("Type 1 for Caesarean cypher. \nType 2 for Translation table ")
-    message = input("What is your message ")
-    if choice == "1":
-        key_caesar = alphabet.shuffle_caesarian()
-        e = encrypt_decrypt(message, alph, key_caesar)
-    elif choice == "2":
-        e = encrypt_decrypt(message, alph, key)
-    else:
+def return_message_encrypted(alph, key):
+    '''
+    Function asks for one of two encryption methods and returns encrypted message using selected method
+    :param alph: str
+    :param key: str
+    :return: str
+    '''
+    choice = input("Type 1 for Caesarean cypher. \nType 2 for Translation table")
+    print(key)
+    if choice != "1" and choice != "2":
         print("Only two methods available: 1 or 2")
-    return e
+    else:
+        message = input("What is your message ")
+        if choice == "1":
+            key = alphabet.shuffle_caesarian()
+            print(key)
+        encrypted_message = encrypt_decrypt(message, alph, key)
+        print(encrypted_message)
 
-def decrypt_message():
-    choice = input("Type 1 for Caesarean cypher. \nType 2 for Translation table ")
-    message = input("What is your message ")
-    global alph
-    global key
-    if choice == "1":
-        key_caesar = alphabet.shuffle_caesarian()
-        d = encrypt_decrypt(message, key_caesar, alph)
-    elif choice == "2":
-        d = encrypt_decrypt(message, key, alph)
-    else:
+def return_message_decrypted(alph, key):
+    '''
+    Function asks for one of two encryption methods and returns encrypted message using selected method
+    :param alph: str
+    :param key: str
+    :return: str
+
+    '''
+    choice = input("Type 1 for Caesarean cypher. \nType 2 for Translation table")
+    if choice != "1" and choice != "2":
         print("Only two methods available: 1 or 2")
-    return d
+    else:
+        message = input("What is your message ")
+        if choice == "1":
+            key = alphabet.shuffle_caesarian()
+        decrypted_message = encrypt_decrypt(message, key, alph)
+        print(decrypted_message)
+
+
+
