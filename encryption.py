@@ -24,14 +24,12 @@ def return_message_encrypted(alph, key):
     :return: str
     '''
     choice = input("Type 1 for Caesarean cypher. \nType 2 for Translation table")
-    print(key)
     if choice != "1" and choice != "2":
         print("Only two methods available: 1 or 2")
     else:
         message = input("What is your message ")
         if choice == "1":
             key = alphabet.shuffle_caesarian()
-            print(key)
         encrypted_message = encrypt_decrypt(message, alph, key)
         print(encrypted_message)
 
