@@ -18,5 +18,7 @@ def deal_cards(deck):
 
     return player_hand, dealer_hand
 
+
 def deal_one(hand, deck):
-    return hand.append(choice(deck))
+    hand.append(choice(deck))
+    return hand
