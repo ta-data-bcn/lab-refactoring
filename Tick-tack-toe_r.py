@@ -33,15 +33,12 @@ def machine_plays():
 def player_plays():
     # Here I ask the player which position she/he wants to play.
 
-    answer_x = input("Your turn! \n"
-                    "Choose where you want to play. First, choose the horizontal coordinate: 1, 2 or 3: ")
+    answer_x = input("Your turn! Choose where you want to play. First, choose the horizontal coordinate: 1, 2 or 3: ")
     possible_a = ['1', '2', '3']
     while answer_x not in possible_a:
         answer_x = input("You didn't write a 1, 2 or 3. Please, choose the horizontal coordinate: 1, 2 or 3: ")
 
     answer_x = int(answer_x) - 1
-
-
 
     answer_y = input("And now the vertical coordinate: x, y or z: ")
     possible_b = ['x', 'y', 'z']
@@ -58,7 +55,8 @@ def player_plays():
 
     while playboard[trans_y][answer_x] == "X" or playboard[trans_y][answer_x] == "O":
 
-        answer_x = input("You have chosen an occupied position. Please, choose an empty one. First, choose the horizontal coordinate: 1, 2 or 3: ")
+        answer_x = input("You have chosen an occupied position. Please, choose an empty one. \n"
+                         "First, choose the horizontal coordinate: 1, 2 or 3: ")
         possible_a = ['1', '2', '3']
         while answer_x not in possible_a:
             answer_x = input("You didn't write a 1, 2 or 3. Please, choose the horizontal coordinate: 1, 2 or 3: ")
@@ -77,7 +75,6 @@ def player_plays():
             trans_y = 1
         elif answer_y == "z":
             trans_y = 2
-
 
     return trans_y, answer_x
 
@@ -156,6 +153,7 @@ def winning_cond():
     else:
         return False
 
+
 def draw_game():
     count = 0
     for i in playboard:
@@ -166,12 +164,11 @@ def draw_game():
         print("Ohh, it's a draw... :(")
         return True
 
+
 # Here I define the start of the game.
 
 print("Welcome to Tick-tack-toe 3x3 game! You vs the drunk machine will be an amazing match!. "
       "Machine takes X and human O. Good luck!")
-zip()
-
 
 playboard = [["", "", ""],
              ["", "", ""],
@@ -185,7 +182,7 @@ print("The machine starts playing!")
 
 
 while True:
-    #Here I create a loop that keeps the game running until a winning condition is fulfilled.
+    # Here I create a loop that keeps the game running until a winning condition is fulfilled.
 
     ans_y_mac, ans_x_mac = machine_plays()
 
@@ -200,7 +197,6 @@ while True:
     if draw_game() is True:
 
         break
-
 
     ans_y_hum, ans_x_hum = player_plays()
 
