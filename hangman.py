@@ -1,5 +1,9 @@
+# --- HANGMAN GAME --- #
+
 import random
 import sys
+
+# --- Categories list and dictionary of lists of words --- #
 
 categories = ['animals', 'food', 'musical instruments', 'car brands', 'country capitals']
 
@@ -47,6 +51,13 @@ categories_dict = \
       'TUNIS', 'ANKARA', 'ASHGABAT', 'FUNAFUTI', 'KAMPALA', 'KIEV', 'LONDON', 'MONTEVIDEO', 'TASHKENT',
       'CARACAS', 'HANOI', 'LUSAKA', 'HARARE']}
 
+# --- Hangman draws --- #
+
+# Three hangman draws with different shapes to be printed for different word lengths.
+# For words between shorter than 6 chars, max_mistakes is 5 and the draw_1 is printed
+# For words between 6 and 8 chars, max_mistakes is 7 and the draw_2 is printed.
+# For words longer than 8 chars, max_mistakes is 9 and the draw_3 is printed
+
 draw_1 = '''                           |------_
                                  |_| 
                                 --|--
@@ -75,9 +86,11 @@ draw_3 = '''                           |------
                                  / \\'''
 # (n = 9)
 
+# --- Game functions --- #
 
-def config_game():
-    '''Chosen category to play the game. Exits the system if an invalid input is provided.
+
+def choose_word():
+    '''Chosen category to play the game. The input will be an integer. Exits the system if an invalid input is provided.
     :return: int representing the category.
     '''
     num_category = input('What category do you want to play in? Choose a category number among the following list:\n'
@@ -119,18 +132,23 @@ def draw_hangman():
 
 
 def calc_max_mistakes():
-    '''Calculates max number of mistakes'''
+    '''Calculates maximum number of mistakes depending on the length of the word.'''
     global max_mistakes
-    if 3 < len(word) < 6:
+    if len(word) < 6:
         max_mistakes = 5
-    elif 5 < len(word) < 9:
+    elif 6 <= len(word) < 9:
         max_mistakes = 7
     else:
         max_mistakes = 9
 
 
 def play():
-    '''Play the game. Iterates over a range which is the double of the word length.'''
+    '''Main function to play the game.
+    Calculates maximum number of mistakes with calc_max_mistakes().
+    Iterates over a range which is the double of the word length.
+    Asks user input, prints word with display_word() and draws hangman.
+    Exits the game if an invalid input is passed.
+    '''
     global mistakes
     calc_max_mistakes()
     for chance in range(len(word)*2):
@@ -155,12 +173,21 @@ def play():
         print(f'Game over! The word was {word}')
 
 
-word = config_game()
+# --- Game initialization --- #
+
+# Choose word
+word = choose_word()
+
+# Create empty set of the letters of chosen word
 word_letters = set(word)
+
+# Create empty lists in order to append the used letters and guessed letters after.
 used_letters = []
 guessed_letters = []
+
+# Initialize mistakes and max_mistakes variables
 mistakes = 0
-diff = ''
 max_mistakes = 0
 
+# Call main function of the game
 play()
