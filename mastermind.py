@@ -2,7 +2,6 @@ import random
 
 
 # List of colors available and max number of tries for the game
-options = ['blue', 'green', 'red', 'yellow', 'white', 'black']
 tries = 10
 number_colors = 4
 
