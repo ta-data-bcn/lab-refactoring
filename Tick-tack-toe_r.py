@@ -51,19 +51,19 @@ def player_plays():
     """
 
     answer_x = input("Your turn! Choose where you want to play. First, choose the horizontal coordinate: 1, 2 or 3: ")
-    possible_a = ['1', '2', '3']
-    while answer_x not in possible_a:
+    possible_x = ['1', '2', '3']
+    while answer_x not in possible_x:
         answer_x = input("You didn't write a 1, 2 or 3. Please, choose the horizontal coordinate: 1, 2 or 3: ")
+    answer_x = int(answer_x) - 1
 
     # TODO : explain more this code
 
-    answer_x = int(answer_x) - 1
-
     answer_y = input("And now the vertical coordinate: x, y or z: ")
-    possible_b = ['x', 'y', 'z']
-    while answer_y not in possible_b:
+    possible_y = ['x', 'y', 'z']
+    while answer_y not in possible_y:
         answer_y = input("You didn't write a x, y or z. Please, choose the vertical coordinate: x, y or z: ")
 
+    # Transform the letters by numbers.
     trans_y = ""
     if answer_y == "x":
         trans_y = 0
@@ -78,15 +78,15 @@ def player_plays():
 
         answer_x = input("You have chosen an occupied position. Please, choose an empty one. \n"
                          "First, choose the horizontal coordinate: 1, 2 or 3: ")
-        possible_a = ['1', '2', '3']
-        while answer_x not in possible_a:
+        possible_x = ['1', '2', '3']
+        while answer_x not in possible_x:
             answer_x = input("You didn't write a 1, 2 or 3. Please, choose the horizontal coordinate: 1, 2 or 3: ")
 
         answer_x = int(answer_x) - 1
 
         answer_y = input("And now the vertical coordinate: x, y or z: ")
-        possible_b = ['x', 'y', 'z']
-        while answer_y not in possible_b:
+        possible_y = ['x', 'y', 'z']
+        while answer_y not in possible_y:
             answer_y = input("You didn't write a x, y or z. Please, choose the vertical coordinate: x, y or z: ")
 
         trans_y = ""
