@@ -1,12 +1,10 @@
 # Note: I'm considering and infinite deck of cards
-import random
-import time
 from deck_values import hand_sum
 from pot import define_pot
 from bet_placing import place_bet
-from cards_dealing import deal_cards
+from cards_dealing import deal_cards, deal_one
 from player_action import decide_player_action, decide_keep_playing
-import settle
+import settle as stl
 
 # Definition of global variables
 pot = define_pot()
@@ -18,95 +16,55 @@ while give_me_more:
     # We ask the player to place a bet for the current round
     print(f'You currently have ${pot} on your pot')
     bet = place_bet(pot)
-    player_busted = False
-    dealer_busted = False
+
+    # Define the status of the player [busted, sum of hand, hand, action] and the dealer [busted, sum of hand, hand]
+    player_status = [False, 0, [], "pass"]
+    dealer_status = [False, 0, []]
 
     # We deal the cards and display the current status
-    player_hand = deal_cards(deck)[0]
-    dealer_hand = deal_cards(deck)[1]
-    print("\nThe dealer's hand is:", dealer_hand[0],"[X]")
+    player_status[2] = deal_cards(deck)[0]
+    dealer_status[2] = deal_cards(deck)[1]
+    print("\nThe dealer's hand is:", dealer_status[2][0],"[X]")
 
-    # TODO include this as a function in deck_values
     # We check if the player holds a couple of A's (only hand of 2 cards higher than 21)
     player_ace_as_one = False
-    player_sum = hand_sum(player_hand, player_ace_as_one)
+    player_status[1] = hand_sum(player_status[2], player_ace_as_one)
 
-    if player_sum > 21:
+    if player_status[1] > 21:
         player_ace_as_one = True
-        player_sum = hand_sum(player_hand, player_ace_as_one)
+        player_status[1] = hand_sum(player_status[2], player_ace_as_one)
 
     # We give the player the choice to take action
-    action = decide_player_action(player_hand, player_sum)
+    player_status[3] = decide_player_action(player_status[2], player_status[1])
 
-    while action == "hit":
-        player_hand.append(random.choice(deck))
+    while player_status[3] == "hit":
 
-        # Update player sum
-        player_sum = hand_sum(player_hand, player_ace_as_one)
+        player_status[2] = deal_one(player_status[2], deck)
 
-        player_status = settle.settle_player(player_sum, player_hand, player_ace_as_one)
-        player_ace_as_one = player_status[0]
-        player_sum = player_status[1]
-        action = player_status[2]
+        # Update player sum and status
+        player_status[1] = hand_sum(player_status[2], player_ace_as_one)
+        player_status = list(stl.settle_player(player_status, player_ace_as_one))
 
     # Dealer's play
     dealer_ace_as_one = False
-    dealer_sum = hand_sum(dealer_hand, dealer_ace_as_one)
+    dealer_status[1] = hand_sum(dealer_status[2], dealer_ace_as_one)
 
     # Corner case: We check if the dealer holds a couple of A's (only hand of 2 cards higher than 21)
-    if dealer_sum > 21:
+    if dealer_status[1] > 21:
         dealer_ace_as_one = True
-        dealer_sum = hand_sum(dealer_hand, dealer_ace_as_one)
+        dealer_status[1] = hand_sum(dealer_status[2], dealer_ace_as_one)
 
-    print("The dealer's hand is:", dealer_hand)
+    print("The dealer's hand is:", dealer_status[2])
 
-    while (dealer_sum < 17) and (not player_busted):
-        #TODO add one card should be a function of the dealing library, check also for player
-        dealer_hand.append(random.choice(deck))
+    while (dealer_status[1] < 17) and (not player_status[0]):
 
-        dealer_sum = hand_sum(dealer_hand, dealer_ace_as_one)
-
-        #TODO summarise this into a settle function, also in player
-        if dealer_sum > 21 and 'A' not in dealer_hand:
-            print("The dealer's hand is:",dealer_hand,"\nDealer is busted")
-            dealer_busted = True
-        elif dealer_sum > 21 and 'A' in dealer_hand:
-            dealer_sum = hand_sum(dealer_hand, dealer_ace_as_one)
-            if dealer_sum > 21:
-                print("The dealer's hand is:",dealer_hand,"\nDealer is busted!")
-                dealer_busted = True
-        else:
-            print("The dealer's hand is:",dealer_hand,"\nWith a total score of",dealer_sum)
-
-    #TODO all this should be in the settle library
+        # Update hand and status
+        dealer_status[2] = deal_one(dealer_status[2], deck)
+        dealer_status[1] = hand_sum(dealer_status[2], dealer_ace_as_one)
+        dealer_status = stl.settle_dealer(dealer_status)
 
     # We settle the game and update the pot
-    time.sleep(1)
-    if player_busted:
-        pot = pot - bet
-        print(f"The dealer wins\n Your remaining pot is ${pot}")
-    elif dealer_busted:
-        pot = pot + bet
-        print(f"You win!\n You have now ${pot} in your pot")
-    else:
-        if dealer_sum == 21 and player_sum == 21:
-            if 'A' in dealer_hand not in player_hand:
-                pot = pot - bet
-                print(f"The dealer wins\n Your remaining pot is ${pot}")
-            elif 'A' in player_hand not in dealer_hand:
-                pot = pot + bet
-                print(f"You win!\n You have now ${pot} in your pot")
-            else:
-                print("It's a split")
-        else:
-            if dealer_sum > player_sum:
-                pot = pot - bet
-                print(f"The dealer wins\n Your remaining pot is ${pot}")
-            elif dealer_sum < player_sum:
-                pot = pot + bet
-                print(f"You win!\n You have now ${pot} in your pot")
-            else:
-                print(f"It's a split\n You have now ${pot} in your pot")
+    pot = stl.settle_game(player_status, dealer_status, pot, bet)
 
     give_me_more = decide_keep_playing(pot)
 
