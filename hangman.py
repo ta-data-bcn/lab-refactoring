@@ -77,6 +77,9 @@ draw_3 = '''                           |------
 
 
 def config_game():
+    '''Chosen category to play the game. Exits the system if an invalid input is provided.
+    :return: int representing the category.
+    '''
     num_category = input('What category do you want to play in? Choose a category number among the following list:\n'
                          '1: animals, 2: food, 3: musical instruments, 4: car brands, 5: country capitals\n')
 
@@ -91,6 +94,7 @@ def config_game():
 
 
 def display_word():
+    '''Word filled with underscores '_' if the letter has not been guessed yet, else shows the letter.'''
     print('\nUsed letters: ', used_letters)
     printed_word = ''
     for i in word:
@@ -102,6 +106,7 @@ def display_word():
 
 
 def draw_hangman():
+    '''Draws (prints) hangman depending on the initial number of mistakes (max_mistakes) and the current mistakes.'''
     if max_mistakes == 5:
         for i in range(mistakes):
             print(draw_1.split('\n')[i])
@@ -114,6 +119,7 @@ def draw_hangman():
 
 
 def calc_max_mistakes():
+    '''Calculates max number of mistakes'''
     global max_mistakes
     if 3 < len(word) < 6:
         max_mistakes = 5
@@ -124,6 +130,7 @@ def calc_max_mistakes():
 
 
 def play():
+    '''Play the game. Iterates over a range which is the double of the word length.'''
     global mistakes
     calc_max_mistakes()
     for chance in range(len(word)*2):
