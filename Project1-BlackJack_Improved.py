@@ -6,7 +6,7 @@ from pot import define_pot
 from bet_placing import place_bet
 from cards_dealing import deal_cards
 from player_action import decide_player_action, decide_keep_playing
-
+import settle
 
 # Definition of global variables
 pot = define_pot()
@@ -26,6 +26,7 @@ while give_me_more:
     dealer_hand = deal_cards(deck)[1]
     print("\nThe dealer's hand is:", dealer_hand[0],"[X]")
 
+    # TODO include this as a function in deck_values
     # We check if the player holds a couple of A's (only hand of 2 cards higher than 21)
     player_ace_as_one = False
     player_sum = hand_sum(player_hand, player_ace_as_one)
@@ -35,8 +36,6 @@ while give_me_more:
         player_sum = hand_sum(player_hand, player_ace_as_one)
 
     # We give the player the choice to take action
-    #TODO include timespleep in function decide player action
-    time.sleep(1)
     action = decide_player_action(player_hand, player_sum)
 
     while action == "hit":
@@ -45,24 +44,10 @@ while give_me_more:
         # Update player sum
         player_sum = hand_sum(player_hand, player_ace_as_one)
 
-        #TODO summarise this into a settle funtion
-        if player_sum > 21 and 'A' not in player_hand:
-            print(player_hand, "\nYou are now at", player_sum,"\nBusted!")
-            action = "pass"
-            player_busted = True
-        elif player_sum > 21 and'A' in player_hand:
-            player_ace_as_one = True
-            player_sum = hand_sum(player_hand, player_ace_as_one)
-            if player_sum > 21:
-                print(player_hand,"\nYou are now at",player_sum,"\nBusted!")
-                action = "pass"
-                player_busted = True
-            else:
-                action = decide_player_action(player_hand, player_sum)
-        elif player_ace_as_one:
-            action = decide_player_action(player_hand, player_sum)
-        else:
-            action = decide_player_action(player_hand, player_sum)
+        player_status = settle.settle_player(player_sum, player_hand, player_ace_as_one)
+        player_ace_as_one = player_status[0]
+        player_sum = player_status[1]
+        action = player_status[2]
 
     # Dealer's play
     dealer_ace_as_one = False
