@@ -1,13 +1,10 @@
 import alphabet
 
-global alph
-global key
-
-# Function takes 3 variables to encrypt or decrypt the message
 
 def encrypt_decrypt(m, a, k):
     '''
-
+    Function takes 3 variables (a message, an alphabet, and shifted or randomized alphabet
+    to encrypt or decrypt the message
     :param m: str
     :param a: str
     :param k: str
