@@ -1,32 +1,10 @@
 # Note: I'm considering and infinite deck of cards
 import random
-import re
-import sys
 import time
 from deck_values import deck_values
-from pot import money_on_the_table
+from pot import define_pot
+from bet_placing import place_bet
 
-#The player places the bet at the beginning of each round
-def bet_placing(pot):
-    bet = 0
-    while (bet < 5) or (bet > 200):
-        bet = input("How much money do you want to bet on this round?. The maximum bet is $200 and the minimum bet is $5\n")
-        if re.findall(r'(?<!\.)\b[0-9]+\b(?!\.)',bet):
-            bet = int(bet)
-            if bet > pot:
-                print(f"You don't have that much, your current pot is ${pot}")
-                bet = 0
-            else:
-                if bet < 5:
-                    print("The minimum bet is $5")
-                elif bet > 200 and bet < pot:
-                    print("The maximum bet is $200")
-                else:
-                    return(bet)
-        else:
-            print("ERROR: This is not a valid input. Only integers accepted")
-            sys.exit()
-        
 #The dealer deals the initial hands for a given deck. Retuns a tuple(?) with 2 lists, 2 items each, the player's hand and the dealer's hand
 #WARNING when printing the result, the second card of the dealer's hand should not be shown
 def deal_cards(deck):
@@ -63,7 +41,7 @@ def keep_playing():
     
 #Build the game:
 #Ask the player how much money he wants to put in the pot
-pot = money_on_the_table()
+pot = define_pot()
 
 #We create the deck
 deck = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
@@ -75,7 +53,7 @@ while give_me_more:
     
     #We ask the player to place a bet for the current round
     print(f'You currently have ${pot} on your pot')
-    bet = bet_placing(pot)
+    bet = place_bet(pot)
     player_busted = False
     dealer_busted = False
 
