@@ -1,3 +1,6 @@
+import re
+
+
 def define_pot():
     """
     The player has a total amount of money (pot), defined at the beginning of the game. The minimum pot is 5.
