@@ -30,7 +30,7 @@ def player_picks_colors():
     """
     colors = []
     while len(colors) < number_colors:
-        choice = input(f"Choose one color from {options} and type it (position {len(colors)+1})")
+        choice = input(f"Choose one color from {options} and type it: ")
         if choice in options:
             colors.append(choice)
         else:
