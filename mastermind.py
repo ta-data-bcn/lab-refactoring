@@ -4,6 +4,7 @@ import random
 # List of colors available and max number of tries for the game
 options = ['blue', 'green', 'red', 'yellow', 'white', 'black']
 tries = 10
+number_colors = 5
 
 
 # List of functions used
@@ -15,7 +16,7 @@ def machine_picks_colors():
     Returns:
       A list with the randomized 4-color-code.
     """
-    code = random.choices(options, k=4)
+    code = random.choices(options, k=number_colors)
     print(f'Computer\'s randomized code is: {code}')
     return code
 
@@ -28,10 +29,8 @@ def player_picks_colors():
       A list with the 4-color-code picked by the user.
     """
     colors = []
-    while len(colors) < 4:
-        choice = input(f"""Choose one color from {options} and
-                            type it (position {len(colors)+1})
-                        """)
+    while len(colors) < number_colors:
+        choice = input(f"Choose one color from {options} and type it (position {len(colors)+1})")
         if choice in options:
             colors.append(choice)
         else:
@@ -48,7 +47,7 @@ for i in range(tries):
     person_guess = player_picks_colors()
 
     if person_guess == machine_code:
-        print("You win")
+        print("You win!")
         break
 
     for i in range(len(person_guess)):
