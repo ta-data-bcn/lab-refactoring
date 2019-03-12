@@ -3,7 +3,15 @@ import random
 
 
 def show_play(board):
-    # Here I print the board.
+    """
+    It prints a table using the library BeautifulTable.
+    The values are filled with the board argument.
+    ------
+    :param board:  3x3 list.
+                3 dimensions list with 3 elements each.
+    ------
+    :return: Print a table as a board.
+    """
 
     print("The game now is:")
     table = BeautifulTable()
@@ -17,7 +25,11 @@ def show_play(board):
 
 
 def machine_plays():
-    # Here I take random values for the machine to play. There's a loop until is chosen a non occupied position.
+    """
+    It returns the random values for the machine to play. A loop runs until an empty position is selected.
+    ------
+    :return: two int
+    """
 
     print("Machine's turn!")
     ans_x_mach = random.randint(0, 2)
@@ -31,12 +43,19 @@ def machine_plays():
 
 
 def player_plays():
-    # Here I ask the player which position she/he wants to play.
+    """
+    Ask the player which position wants to play.
+    The programs keeps asking until the player select (with the correct characters) an empty position.
+    ------
+    :return: two int
+    """
 
     answer_x = input("Your turn! Choose where you want to play. First, choose the horizontal coordinate: 1, 2 or 3: ")
     possible_a = ['1', '2', '3']
     while answer_x not in possible_a:
         answer_x = input("You didn't write a 1, 2 or 3. Please, choose the horizontal coordinate: 1, 2 or 3: ")
+
+    # TODO : explain more this code
 
     answer_x = int(answer_x) - 1
 
@@ -52,6 +71,8 @@ def player_plays():
         trans_y = 1
     elif answer_y == "z":
         trans_y = 2
+
+    # TODO : explain more this code
 
     while playboard[trans_y][answer_x] == "X" or playboard[trans_y][answer_x] == "O":
 
@@ -80,7 +101,11 @@ def player_plays():
 
 
 def winning_cond():
-    # Here I define the winning conditions
+    """
+    It defines the winning conditions. There're two sections: machine and player.
+    ------
+    :return: True or False
+    """
 
     # Machine wins
 
@@ -155,6 +180,11 @@ def winning_cond():
 
 
 def draw_game():
+    """
+    It returns true if the board is complete.
+
+    :return: None or True
+    """
     count = 0
     for i in playboard:
         for h in i:
@@ -163,9 +193,11 @@ def draw_game():
     if count == 9:
         print("Ohh, it's a draw... :(")
         return True
+    else:
+        return None
 
 
-# Here I define the start of the game.
+# Main section of the game, where the functions are called.
 
 print("Welcome to Tick-tack-toe 3x3 game! You vs the drunk machine will be an amazing match!. "
       "Machine takes X and human O. Good luck!")
@@ -182,7 +214,7 @@ print("The machine starts playing!")
 
 
 while True:
-    # Here I create a loop that keeps the game running until a winning condition is fulfilled.
+    # The loop keeps the game running until a winning condition is fulfilled or is a draw.
 
     ans_y_mac, ans_x_mac = machine_plays()
 
