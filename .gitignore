@@ -118,3 +118,6 @@ fabric.properties
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/macos,pycharm,jupyternotebook
+Project1-BlackJack\.ipynb
+
+\.idea/
