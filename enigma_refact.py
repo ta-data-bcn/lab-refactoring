@@ -33,4 +33,6 @@ def enigma():
     else:
         print(f"You tiped {selection}, please type E/D")
         enigma()
+
+
 enigma()
