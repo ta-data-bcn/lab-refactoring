@@ -42,14 +42,14 @@ def machine_plays():
     return ans_y_mach, ans_x_mach
 
 
-def transform(y):
+def transform(let):
     """
     Transform the values x, y or z by 0, 1 or 2, respectively.
-    :param y:str that has to be x, y or z.
+    :param let:str that has to be x, y or z.
     :return: int: 0, 1 or 2
     """
     d_letter_to_num = {"x": 0, "y": 1, "z": 2}
-    return d_letter_to_num[y]
+    return d_letter_to_num[let]
 
 
 def player_loop():
@@ -91,6 +91,7 @@ def player_plays():
 
 
 def winning_cond():
+
     """
     It defines the winning conditions. There're two sections: machine and player.
     ------
@@ -129,7 +130,6 @@ def winning_cond():
 
     elif playboard[0][2] == playboard[1][1] == playboard[2][0] == "X":
         print("Drunk Machine wins! Congrats!")
-        return True
 
     # Human wins
 
@@ -193,8 +193,8 @@ print("Welcome to Tick-tack-toe 3x3 game! You vs the drunk machine will be an am
       "Machine takes X and human O. Good luck!")
 
 playboard = [["", "X", "O"],
-             ["X", "O", "O"],
-             ["", "X", ""]]
+             ["X", "", "O"],
+             ["X", "X", ""]]
 
 print("The initial board is:")
 
