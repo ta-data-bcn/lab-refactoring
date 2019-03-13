@@ -1,23 +1,26 @@
-options = ['blue', 'green', 'red', 'yellow', 'white', 'black']
+""""
+Information about the game and functions used
+"""
+import random
 
-def machine_picks_colors():
+def machine_picks_colors(options, number_colors):
     """
     The computer picks a random color-code from the ones available
     in the list 'options'.
 
     Returns:
-      A list with the randomized 4-color-code.
+      A list with the randomized color-code.
     """
     code = random.choices(options, k=number_colors)
     print(f'Computer\'s randomized code is: {code}')
     return code
 
-def player_picks_colors():
+def player_picks_colors(options, number_colors):
     """
     The function asks the player to pick a color-code and returns it.
 
     Returns:
-      A list with the 4-color-code picked by the user.
+      A list with the color-code picked by the user.
     """
     colors = []
     while len(colors) < number_colors:
