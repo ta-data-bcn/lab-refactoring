@@ -8,7 +8,7 @@ import random
 # We define the deck the players will use
 # Face cards are J, Q, K, A
 face_cards = {'A': [11, 1], 'K': 10, 'Q': 10, 'J': 10}
-useful_deck = ['A', 'K', 'Q', 'J', 10, 9, 8, 7, 6, 5, 4, 3, 2]
+deck = ['A', 'K', 'Q', 'J', 10, 9, 8, 7, 6, 5, 4, 3, 2]
 
 
 # First we ask the user to place the bet.
@@ -24,12 +24,12 @@ def place_bet():
 
 # Deal the first two cards.
 def deal_first_hand():
-    return [random.choice(useful_deck) for i in range(2)]
+    return [random.choice(deck) for i in range(2)]
 
 
 # Deal an additional card.
 def deal_card():
-    return random.choice(useful_deck)
+    return random.choice(deck)
 
 
 def parse_ace_value(hand, value):

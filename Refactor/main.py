@@ -1,6 +1,6 @@
-import play
+import game
 
 # Execute this script to play the game
-play.play()
+game.play()
 
 
