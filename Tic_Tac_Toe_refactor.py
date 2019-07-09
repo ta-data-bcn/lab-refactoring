@@ -145,11 +145,10 @@ def request_position_from_user():
 
 
 def check_for_empty_space(position):
-    # Could have omitted the == True since if True: still runs but it's clearer that way
-    if player1_turn == True:
+    if player1_turn:
         if position not in position_dict.keys():
-            print("That is not an allowed position. Please refer to the following list (DO NOT use apostrophes): 'top left',\
-'top', 'top right', 'left', 'center', 'right', 'bottom left', 'bottom', 'bottom right'.\n")
+            print("That is not an allowed position. Refer to the following list (DO NOT use apostrophes): 'top left',"
+                  "'top', 'top right', 'left', 'center', 'right', 'bottom left', 'bottom', 'bottom right'.\n")
             request_position_from_user()
         elif position in position_dict.keys() and \
                 board[position_dict[position][0]][position_dict[position][1]] != ' ':
@@ -157,7 +156,7 @@ def check_for_empty_space(position):
             request_position_from_user()
         else:
             mark_placer(position)
-    elif player1_turn == False:
+    elif not player1_turn:
         # The computer will always choose from the position_dict, we just need to check if the space is occupied or not
         if position in position_dict.keys() and \
                 board[position_dict[position][0]][position_dict[position][1]] != ' ':
@@ -171,15 +170,16 @@ def computer_choice():
     check_for_empty_space(random.choice(list(position_dict.keys())))
 
 
-# This places a mark at the given positions, prints a message to confirm the action, prints the board again and then runs the check_end_of_game function
+# This places a mark at the given positions, prints a message to confirm the action, prints the board again
+# and then runs the check_end_of_game function
 def mark_placer(position):
-    if player1_turn == True:
+    if player1_turn:
         board[position_dict[position][0]][position_dict[position][1]] = player1_mark
         print(f"You placed an {player1_mark} in the following position: {position}\n")
         game_board_printer()
         check_end_of_game()
 
-    elif player1_turn == False:
+    elif not player1_turn:
         board[position_dict[position][0]][position_dict[position][1]] = player2_mark
         print(f"The computer placed an {player2_mark} in the following position: {position}")
         game_board_printer()
@@ -188,6 +188,7 @@ def mark_placer(position):
 
 # This checks when the game ends, either because someone won or because it's a tie
 def check_end_of_game():
+    # Checking board lenght in case I ever have the intention of adding N-size boards
     board_size = len(board)
     # Checking horizontal lines
     for row in range(board_size):
@@ -195,8 +196,8 @@ def check_end_of_game():
             end_of_game_announcer(board[row][0])
         elif all((mark == 'O') for mark in board[row]):
             end_of_game_announcer(board[row][0])
-    # Zipping an unpacked nested list gives you the transposed list. Checking the horizontal lines in such a list is the same as checking the verticals in the
-    # original one
+    # Zipping an unpacked nested list gives you the transposed list. Checking the horizontal lines in such a list
+    # is the same as checking the verticals in the original one
     for column in zip(*board):
         if all((mark == 'X') for mark in column):
             end_of_game_announcer(column[0])
@@ -208,8 +209,8 @@ def check_end_of_game():
         end_of_game_announcer(board[0][0])
     elif all((mark == 'O') for mark in [board[i][i] for i in range(3)]):
         end_of_game_announcer(board[0][0])
-        # Inverse diagonal: The sum of the indexes of the points that are part of an inverse diagonal is equal to board size -1. I could just use 3, but let's
-    # make a variable for clarity
+        # Inverse diagonal: The sum of the indexes of the points that are part of an inverse diagonal is equal to
+        # board size -1
     elif all((mark == 'X') for mark in [board[i][board_size - i - 1] for i in range(3)]):
         end_of_game_announcer(board[0][2])
     elif all((mark == 'O') for mark in [board[i][board_size - i - 1] for i in range(3)]):
