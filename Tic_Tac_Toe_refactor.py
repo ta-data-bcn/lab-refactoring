@@ -1,18 +1,3 @@
-logo = """
-
- _______  ___  _______       _______  _______  _______       _______  _______  _______ 
-|       ||   ||       |     |       ||   _   ||       |     |       ||       ||       |
-|_     _||   ||       | ____|_     _||  |_|  ||       | ____|_     _||   _   ||    ___|
-  |   |  |   ||       ||____| |   |  |       ||       ||____| |   |  |  | |  ||   |___ 
-  |   |  |   ||      _|       |   |  |       ||      _|       |   |  |  |_|  ||    ___|
-  |   |  |   ||     |_        |   |  |   _   ||     |_        |   |  |       ||   |___ 
-  |___|  |___||_______|       |___|  |__| |__||_______|       |___|  |_______||_______|
-
-"""
-
-# This is to raise SystemExit in case the player doesn't want to play a new game
-import sys
-
 # We need it for the computer's choice
 import random
 
@@ -22,15 +7,15 @@ turn_counter = 1
 # A bool to check whose turn is it. Starts with True since human player always starts
 player1_turn = False
 
-# Global variables for players mark since they remain the same for the whole duration of the game and even though it's bad practice it makes things easier
+# Global variables for players mark
 player1_mark = None
 player2_mark = None
 
 # Dictionary to relate natural language positions to matrix positions
-position_dict = {'top left': (0,0), 'top': (0,1), 'top right': (0,2), 'left':(1,0), 'center':(1,1), 'right':(1,2),
-                 'bottom left':(2,0), 'bottom':(2,1), 'bottom right':(2,2)}
+position_dict = {'top left': (0, 0), 'top': (0, 1), 'top right': (0, 2), 'left': (1, 0), 'center': (1, 1),
+                 'right': (1, 2), 'bottom left': (2, 0), 'bottom': (2, 1), 'bottom right': (2, 2)}
 
-# This the empty 3x3 board matrix
+# This initializing the board variable
 board = None
 
 # The rules
@@ -51,12 +36,25 @@ When requesting a position to place a piece the program understands the followin
 
 """
 
+
 # This prints the really ugly and nostalgic ASCII art logo
-print(logo)
+print("""
+
+ _______  ___  _______       _______  _______  _______       _______  _______  _______ 
+|       ||   ||       |     |       ||   _   ||       |     |       ||       ||       |
+|_     _||   ||       | ____|_     _||  |_|  ||       | ____|_     _||   _   ||    ___|
+  |   |  |   ||       ||____| |   |  |       ||       ||____| |   |  |  | |  ||   |___ 
+  |   |  |   ||      _|       |   |  |       ||      _|       |   |  |  |_|  ||    ___|
+  |   |  |   ||     |_        |   |  |   _   ||     |_        |   |  |       ||   |___ 
+  |___|  |___||_______|       |___|  |__| |__||_______|       |___|  |_______||_______|
+
+""")
+
+# This is the first function that will be run, it resets all global to their default status in case it's a new game,
+# including the board then runs function to let the player choose their mark, print the board and then runs
+# check_turn() which takes over from here
 
 
-# This is the first function that will be run, it resets all global to their default status in case it's a new game, including the board,
-# then runs function to let the player choose their mark, print the board and then runs check_turn() which takes over from here
 def game_start():
     print(rules)
     global turn_counter
@@ -76,7 +74,7 @@ def game_start():
 
 # The name is self-explanatory
 def empty_board_generator():
-    return [[' ' for x in range(3)] for k in range(3)]
+    return [[' ' for _ in range(3)] for _ in range(3)]
 
 
 # This prints the game board, it will be called after each move
@@ -93,13 +91,15 @@ def game_board_printer():
 # Lets the user choose the mark
 def mark_choice():
     while True:
-        # They're not going to change during a single game, I'll just make them global instead of having to pass them into every single function everytime
+        # Constant variables during the game, that's why they're global
         global player1_mark
         global player2_mark
+
         user_input = input("""You will play against the computer since 
 I haven't programmed 2-player games. Select O (as in Orange) or X (as in Xenobiology) 
 as the symbol you want to play with:
         """).lower()
+
         if user_input == "x":
             print("""You chose X (as in Xenophobia). The computer will play with O 
 (as in Organ trafficking).""")
@@ -119,12 +119,13 @@ as the symbol you want to play with:
             continue
 
 
-# This is what actually runs the game. The program goes back to this function after every turn, flips the player1_turn boolean and then either requests a choice from the
-# player or the computer
+# This is what actually runs the game. The program goes back to this function after every turn,
+# flips the player1_turn boolean and then either requests a choice from the player or the computer
+
 def check_turn():
     global player1_turn
     global turn_counter
-    if player1_turn == False:
+    if not player1_turn:
         # Switching True to False so that next turn it changes
         player1_turn = not player1_turn
         print(f"It's your turn and it's round number {turn_counter}.\n")
