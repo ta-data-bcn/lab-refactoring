@@ -1,16 +1,18 @@
 import random
-import sys
-deck_cards = [2,3,4,5,6,7,8,9,10,"J", "Q", "K", "A"] *4
+
+deck_cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"] * 4
+
 
 # function for dealing of cards
 
 def deal_cards():
     """ returns three random numbers in a list """
     hand = []
-    for i in range (2):
-        card = deck_cards[random.randint (0,12)]
-        hand.append (card)
+    for i in range(2):
+        card = deck_cards[random.randint(0, 12)]
+        hand.append(card)
     return hand
+
 
 # deck for hit
 
@@ -23,14 +25,15 @@ def hit(hand):
     output: new hand
     """
     hand2 = hand
-    card = deck_cards[random.randint (0,12)]
+    card = deck_cards[random.randint(0, 12)]
     hand2.append(card)
     return hand2
 
+
 # For player's hand
 # assumption that player will play an intiger and not a letter
-        # >> for error handling code - see
-def player (hand):
+# >> for error handling code - see
+def player(hand):
     """
     input: hand (from deal_cards())
 
@@ -54,6 +57,7 @@ def player (hand):
     player_points += player_hand
     return player_points
 
+
 # For the dealers hand
 
 
@@ -73,7 +77,7 @@ def dealer(hand):
         if card == "J" or card == "Q" or card == "K":
             dealer_hand.append(10)
         elif card == "A":
-            if len(dealer_hand) > 2 and (dealer_hand[0]+dealer_hand[1])> 11:
+            if len(dealer_hand) > 2 and (dealer_hand[0] + dealer_hand[1]) > 11:
                 dealer_hand.append(1)
             else:
                 dealer_hand.append(11)

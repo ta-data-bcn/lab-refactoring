@@ -1,6 +1,9 @@
-import dealing_of_cards as dc
 import sys
-deck_cards = [2,3,4,5,6,7,8,9,10,"J", "Q", "K", "A"] *4
+
+import dealing_of_cards as dc
+
+deck_cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"] * 4
+
 
 # Game function
 
@@ -29,7 +32,9 @@ def game():
     print(f"You have a total of {player_points}")
     print(f"The dealer has a total of {dealer_points}")
 
-# blackjack exception
+    return player_points, dealer_points
+
+    # blackjack exception
     blackjack = False
     if player_points == 21:
         print("You win with blackjack!")
@@ -47,7 +52,7 @@ def game():
         wins += 1
         blackjack = True
 
-# choice to hit or stand
+    # choice to hit or stand
     if not blackjack:
         choice = input("Do you want to hit or stand [h/s]?")
 
@@ -75,7 +80,7 @@ def game():
         else:
             print(f"The dealer still has {dealer_hand}, for a total of {dealer_points}")
 
-# score resolution
+        # score resolution
         if player_points == 21:
             print("You win!")
             wins += 1
