@@ -1,4 +1,4 @@
-'''
+"""
 
 PROJECT - 1 - Message Encryption & Decryption
 
@@ -21,27 +21,29 @@ def image_to_values()
 def encrypt:
 def decrypt:
 
-'''
-from functions_for_the_project import what_to_do                                    # import all functions needed
+
+"""
+
+from functions_for_the_project import WhatToDo                                    # import all functions needed
 
 no_quit = "1"
 no_errors = "1"
 
 while no_quit == "1" or no_errors == "1":
 
-    get_user_answer, get_message, no_errors = what_to_do.ask_user_encrypt_or_decrypt()         # ask user messsage
+    get_user_answer, get_message, no_errors = WhatToDo.ask_user_encrypt_or_decrypt()         # ask user messsage
 
     if no_errors == "0" or no_quit == "0":
 
         break
 
-    get_user_picture = what_to_do.ask_for_the_picture()                             # ask user image hash
+    get_user_picture = WhatToDo.ask_for_the_picture()                             # ask user image hash
 
-    get_image_hash = what_to_do.image_to_values(get_user_picture)                   # convert image to a list
+    get_image_hash = WhatToDo.image_to_values(get_user_picture)                   # convert image to a list
 
-    final_message = what_to_do.encrypt_or_decrypt(get_message,get_image_hash,get_user_answer)       # encrypt message
+    final_message = WhatToDo.encrypt_or_decrypt(get_message, get_image_hash, get_user_answer)       # encrypt message
 
-    what_to_do.show_final_message(final_message)                                    # show result
+    WhatToDo.show_final_message(final_message)                                    # show result
 
 if no_quit == "0":
 

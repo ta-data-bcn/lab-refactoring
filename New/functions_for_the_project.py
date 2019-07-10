@@ -1,14 +1,25 @@
+# import libraries / modules
+
 from tkinter import filedialog as fd        # this is a module to can open dialogues.
 from PIL import Image                   # this is a module for image manipulation.
 import math
+
+# declare variables
+
 options = ["e", "E", "d", "D"]
 ascii_unicode = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïð'
-#ascii_unicode = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+# ascii_unicode = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' This was a test to don't load everithing
 call_letter = {0:"A", 1:"B", 2:"C", 3:"D", 4:"E", 5:"F", 6:"G", 7:"H", 8:"I", 9:"J"}
 call_number = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7, "I":8, "J":9}
 pixel_mosaic_size = 40
 
-class what_to_do:
+
+# declare a class to be loaded externally
+
+class WhatToDo:
+
+    # start declaring functions
+
 
     def ask_user_encrypt_or_decrypt():
 
