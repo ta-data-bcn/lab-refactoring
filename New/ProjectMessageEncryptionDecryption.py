@@ -24,7 +24,7 @@ def decrypt:
 
 """
 
-from functions_for_the_project import WhatToDo                                    # import all functions needed
+from functions import WhatToDo                                    # import all functions needed
 
 no_quit = "1"
 no_errors = "1"
@@ -52,3 +52,7 @@ if no_quit == "0":
 if no_errors == "0":
 
     print("\nThis is not for you, I don't even think you can read. Bye ")
+
+WhatToDo.ask_user_encrypt_or_decrypt()
+
+print(quit())
