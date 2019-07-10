@@ -22,8 +22,7 @@ class WhatToDo:
     """
     # start declaring functions
 
-    def is_not_used(self):   # function to avoid PyCharm message
-        pass
+
 
     def ask_user_encrypt_or_decrypt(self=None):
 
@@ -31,7 +30,6 @@ class WhatToDo:
         Prompt user to encrypt or decrypt text.
         :return: (user_answer=string,message_to_print=string,exit_value_binary(string))
         """
-        self.is_not_used()
         times = 0
         user_answer = input("\nWhat you want to do, encrypt or decrypt? (E or D): ")
 
@@ -59,11 +57,10 @@ class WhatToDo:
         :return: (object=image)
         """
 
-        self.is_not_used()
         path = fd.askopenfilename(filetypes=(("jpeg files", "*.jpg"), ("all files", "*.*")))  # select a file from the library and return the path.
         return path
 
-    def image_to_values(self, path):
+    def image_to_values(path):
 
         """
         Analyze the image and returns a list of values with
@@ -71,7 +68,6 @@ class WhatToDo:
         :return: (list=each_pixel_sum(rgb))
         """
 
-        self.is_not_used()
         img = Image.open(path)                              # to work with the image, first is necessary to open it (basically is loaded)
         img_rgb = img.convert('RGB')                        # to use a color picker have to be sure to transform image to color profile to RGB
 
@@ -89,7 +85,7 @@ class WhatToDo:
 
         return list_of_sum_of_rgb_values
 
-    def encrypt_or_decrypt(self, message_passed, hash_of_pixels, val):
+    def encrypt_or_decrypt(message_passed, hash_of_pixels, val):
 
         """
         Function to encrypt or decrypt the code.
@@ -98,7 +94,6 @@ class WhatToDo:
         :return: (object=image)
         """
 
-        self.is_not_used()
         list_unicode = (list(ascii_unicode))
         message = (list(message_passed))
 
@@ -139,8 +134,7 @@ class WhatToDo:
 
         return message_list
 
-    def show_final_message(self, final_message):
+    def show_final_message(final_message):
 
-        self.is_not_used()
         print("\n"+"".join(final_message))
         return
