@@ -2,22 +2,27 @@ import dealing_of_cards as dc
 import sys
 deck_cards = [2,3,4,5,6,7,8,9,10,"J", "Q", "K", "A"] *4
 
-"""Game function"""
+# Game function
 
 def game():
+    """
+    input: none
+    external functions: deal_cards, hit, player, dealer
+    takes both decks and defines who wins by comparing the sum of points according to the rules of Balckjack
+    return: number of wins for player
+    """
 
-    """counter"""
-    wins = 0
+    wins = 0  # counter
 
-    """call function for dealt cards"""
+    # call function for dealt cards
     player_hand = dc.deal_cards()
     dealer_hand = dc.deal_cards()
 
     print(f"You have {player_hand}")
     print(f"The dealer has {dealer_hand}")
 
-    """call equivalent for point calculation of hand"""
-    """change the name of ppoints and dpoint"""
+    # call equivalent for point calculation of hand
+    # change the name of ppoints and dpoint
     player_points = dc.player(player_hand)
     dealer_points = dc.dealer(dealer_hand)
 

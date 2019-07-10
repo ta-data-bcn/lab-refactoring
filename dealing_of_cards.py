@@ -2,30 +2,44 @@ import random
 import sys
 deck_cards = [2,3,4,5,6,7,8,9,10,"J", "Q", "K", "A"] *4
 
-"""function for dealing of cards"""
+# function for dealing of cards
 
 def deal_cards():
+    """ returns three random numbers in a list """
     hand = []
     for i in range (2):
         card = deck_cards[random.randint (0,12)]
         hand.append (card)
     return hand
 
-"""deck for hit"""
-# if player chooses to hit following happens:
+# deck for hit
 
 def hit(hand):
+    """
+    input: hand (from deal_card)
+
+    appends a random intiger to the list of dealt cards
+
+    output: new hand
+    """
     hand2 = hand
     card = deck_cards[random.randint (0,12)]
     hand2.append(card)
     return hand2
 
-"""For player's hand"""
-# Player game, what is the sum of the player's hand
+# For player's hand
 # assumption that player will play an intiger and not a letter
         # >> for error handling code - see
-# include special funciton for A (1 or 11)
 def player (hand):
+    """
+    input: hand (from deal_cards())
+
+    transforms the number list into the cards of a deck
+    asks player weather Ace is worth 1 or 11 points
+    adds the points each card is worth to obtain a total number of points
+
+    output: total player points
+    """
     player_points = 0
     player_hand = []
     for card in hand:
@@ -40,11 +54,19 @@ def player (hand):
     player_points += player_hand
     return player_points
 
-"""For the dealers hand"""
-# Dealer game what is the sum of the dealer's hand
-# include special funciton for A (1 or 11 depending on the total score
+# For the dealers hand
+
 
 def dealer(hand):
+    """
+    input: hand (from deal_cards())
+
+    transforms the number list into the cards of a deck
+    decide weather Ace is worth 1 or 11 points
+    adds the points each card is worth to obtain a total number of points
+
+    output: total dealer points
+    """
     dealer_points = 0
     dealer_hand = []
     for card in hand:
