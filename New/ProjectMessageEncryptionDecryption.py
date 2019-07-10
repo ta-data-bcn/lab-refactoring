@@ -31,7 +31,7 @@ no_errors = "1"
 
 while no_quit == "1" or no_errors == "1":
 
-    get_user_answer, get_message, no_errors = WhatToDo.ask_user_encrypt_or_decrypt()         # ask user messsage
+    get_user_answer, get_message, no_errors = WhatToDo.ask_user_encrypt_or_decrypt()         # ask user message
 
     if no_errors == "0" or no_quit == "0":
 

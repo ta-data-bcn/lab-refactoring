@@ -1,7 +1,7 @@
 from tkinter import filedialog as fd        # this is a module to can open dialogues.
 from PIL import Image                   # this is a module for image manipulation.
 import math
-options = ["e", "E", "d", "D"]
+user_input_response = ["e", "E", "d", "D"]
 ascii_unicode = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïð'
 #ascii_unicode = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 call_letter = {0:"A", 1:"B", 2:"C", 3:"D", 4:"E", 5:"F", 6:"G", 7:"H", 8:"I", 9:"J"}
@@ -15,15 +15,15 @@ class what_to_do:
         times = 0
         user_answer = input("\nWhat you want to do, encrypt or decrypt? (E or D): ")
 
-        if user_answer in options:
+        if user_answer in user_input_response:
             message = input("\n\tType message: ")
-            return (user_answer, message, "1")
+            return user_answer, message, "1"
 
-        elif user_answer not in options:
+        elif user_answer not in user_input_response:
             while times <= 2:
                 user_answer = input("\nPlease, what you want to do, encrypt or decrypt? (%d times remaining, E or D): " % (3-times))
                 times += 1
-                if user_answer in options:
+                if user_answer in user_input_response:
                     message = input("Type message: ")
                     return (user_answer, message, "1")
             return ("0", "0", "0")
