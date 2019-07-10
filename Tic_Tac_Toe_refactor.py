@@ -18,6 +18,9 @@ position_dict = {'top left': (0, 0), 'top': (0, 1), 'top right': (0, 2), 'left':
 # This initializing the board variable
 board = None
 
+# Only possible game board size for the current iteration of the software
+board_size = 3
+
 # The rules
 rules = """This is Tic-Tac-Toe. You probably know it already.
 
@@ -188,8 +191,7 @@ def mark_placer(position):
 
 # This checks when the game ends, either because someone won or because it's a tie
 def check_end_of_game():
-    # Checking board lenght in case I ever have the intention of adding N-size boards
-    board_size = len(board)
+    global board_size
     # Checking horizontal lines
     for row in range(board_size):
         if all((mark == 'X') for mark in board[row]):
