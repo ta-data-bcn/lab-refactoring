@@ -1,19 +1,19 @@
 import hangman_function as hg
 
-########################## GAME ########################
+##### Hangman Game
 
 hg.welcome_message()
 
 #variables initialization
 hidden_word, num_attempts, missed_letters, guessed_letters, discovered_word, hidden_word_char, counter = hg.initialize()
 
-hg.initial_hint(hidden_word_char)
+hg.initial_hint(hidden_word_char)                #print initial hint and underscores for the lenght of the word
 
 while num_attempts != 0 and not discovered_word:
 
-    user_letter = hg.new_attempt(num_attempts)
+    user_letter = hg.new_attempt(num_attempts)   #ask for letter
 
-    is_valid = hg.valid_letter(user_letter,guessed_letters,missed_letters)
+    is_valid = hg.valid_letter(user_letter,guessed_letters,missed_letters) #letter validation
 
     #if letter is on the word
     if  is_valid and user_letter in hidden_word and user_letter not in guessed_letters:
@@ -43,9 +43,9 @@ while num_attempts != 0 and not discovered_word:
     elif not is_valid:
         continue
 
-    hg.print_word_status(hidden_word_char)
+    hg.print_word_status(hidden_word_char)        #print the word status
 
-    hg.winner_loser(discovered_word,num_attempts)
+    hg.winner_loser(discovered_word,num_attempts) #decides who wins the game
 
 
 
