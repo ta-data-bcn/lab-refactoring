@@ -33,13 +33,11 @@ while cash_remaining >= 50 and question == "Y":
         question = gf.keep_gambling(cash_remaining)
 
     else:
-
         while player_hand_value < 21:
 
             answer = gf.another_card()
 
             if answer == "Y":
-
                 player_cards, player_hand_value = gf.cards_post_flop(c.player, c.deck_postflop, player_cards, player_hand_value)
 
             elif answer == "N":
@@ -64,4 +62,4 @@ while cash_remaining >= 50 and question == "Y":
             question = gf.keep_gambling(cash_remaining)
 
 if cash_remaining < 50 and question == "Y":
-    print("You ran out of cash")
+    print("Sorry, you don't have enough cash to keep playing on this table")
