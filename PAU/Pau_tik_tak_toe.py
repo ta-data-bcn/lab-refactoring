@@ -102,7 +102,7 @@ def check_diag2():
 
 def main():
     print("Welcome to the Tic-Tac-Toe game")
-    for i in range(5):
+    for i in range(9):
         select_move_player()
         print_updated_grid()
         a = check_hor()
