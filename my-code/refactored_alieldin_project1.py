@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 def encrypt():
     sentence_to_encrypt = input("Input a sentance that you want to encrypt:\n")
     enclist=[]
@@ -46,9 +40,6 @@ else:
             decrypt()
         else:
             print("\033[1m"+"\033[91m"+"Your input is incorrect, please try again!"+"\033[0m")
-
-
-# In[ ]:
 
 
 
