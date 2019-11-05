@@ -137,5 +137,7 @@ fabric.properties
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+refactored_project1.txt
+
 
 # End of https://www.gitignore.io/api/macos,pycharm,jupyternotebook,visualstudiocode,jupyternotebooks
