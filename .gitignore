@@ -138,6 +138,8 @@ fabric.properties
 # Ignore all local history of files
 .history
 refactored_project1.txt
+refactored_alieldin_project1.ipynb
+original_alieldin_project1.ipynb
 
 
 # End of https://www.gitignore.io/api/macos,pycharm,jupyternotebook,visualstudiocode,jupyternotebooks
