@@ -32,12 +32,15 @@ if choice == 'encrypt':
 elif choice == 'decrypt':
     decrypt()
 else:
+    print("\033[1m"+"\033[91m"+"Your input is incorrect, please try again!"+"\033[0m")
     while True:
         choice = input("Do you want to encrypt or decrypt a message?\nPlease entre ""\033[1m" + "'encrypt' or 'decrypt': "+"\033[0m")
         if choice == 'encrypt':
             encrypt()
+            break
         elif choice == 'decrypt':
             decrypt()
+            break
         else:
             print("\033[1m"+"\033[91m"+"Your input is incorrect, please try again!"+"\033[0m")
 
