@@ -2,8 +2,8 @@
 card), stay (the player is happy with his hand) or pass (the player does not want to play this round)'''
 
 
-import opcions_game as og
-import Change_A as ca
+from Functions import opcions_game as og
+from Functions import Change_A as ca
 
 
 
