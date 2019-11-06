@@ -1,5 +1,7 @@
 import random
 import turtle
+from functions1 import hangman, guessletter, guessword, guesswordconsent
+
 #1st create a list to know the possibilities of words
 words = ["contact","business","online","first","services","click","service","price","people","state","email","health",
          "world","products","music","should","product","system","policy","number","please","support","message","after",
@@ -104,103 +106,6 @@ for i in range(len(intro_list)):
 print(intro_list)
 print("Let the games begin!!!")
 
-#prints drawing of hangman
-def hangman ():
-    if attempts == 1:
-        turtle.penup()
-        turtle.setposition(-200,-100)
-        turtle.pendown()
-        turtle.setheading(90)
-        turtle.fd(400)
-
-    elif attempts == 2:
-        turtle.setheading(0)
-        turtle.fd(300)
-
-    elif attempts == 3:
-        turtle.setheading(270)
-        turtle.fd(70)
-
-    elif attempts == 4:
-        turtle.penup()
-        turtle.setheading(180)
-        turtle.fd(0)
-        turtle.pendown()
-        turtle.circle(30)
-        turtle.penup()
-        turtle.setheading(270)
-        turtle.fd(60)
-        turtle.pendown()
-
-    elif attempts == 5:
-        turtle.fd(100)
-
-    elif attempts == 6:
-        turtle.setheading(90)
-        turtle.fd(50)
-        turtle.setheading(0)
-        turtle.fd(50)
-
-    elif attempts == 7:
-        turtle.back(100)
-
-    elif attempts == 8:
-        turtle.fd(50)
-        turtle.setheading(270)
-        turtle.fd(50)
-        turtle.setheading(0)
-        turtle.fd(50)
-
-    else:
-        turtle.back(100)
-
-#Guess a letter: It gathers the guess (checking and formating to the correct format
-def guessletter():
-    while True:
-        p_guess = input("Make your guess, tell me a letter: ")
-        p_guess=p_guess.lower()
-
-        if p_guess.isalpha():
-            return p_guess
-
-        else:
-            print("Sorry I don't understand you, enter another letter :(")
-
-
-#Confirmation of guessing the word
-def guesswordconsent():
-    while True:
-        p_guess1=input("\nDo you want to try to guess the word? Y, N: ")
-
-        if p_guess1.isalpha():
-
-            if p_guess1.lower() in ["yes", "y", "si", "sí", "yas", "s"]:
-                p_guess1="yes"
-                return p_guess1
-
-            elif p_guess1.lower() in ["no", "n", "nou"]:
-                p_guess1="no"
-                return p_guess1
-
-            else:
-                print("Sorry I don't understand your answer, you have to type Y or N: ")
-
-        else:
-            print("-------------Sorry I don't understand you, enter Y or N")
-
-
-#Try to guess the word
-def guessword():
-    while True:
-        p_guess=input("\nEnter your guess of the word: ")
-        p_guess=p_guess.lower()
-
-        if p_guess.isalpha():
-            return p_guess
-
-        else:
-            print("Sorry I don't understand you, enter another letter")
-
 #Checker, it will run as long as correct letters < length of lista to be filled and as long as there are attempts
 while correct_letters<len(intro_list) and attempts<(limit_attempts-1):
     user_letter = guessletter()
@@ -226,7 +131,7 @@ while correct_letters<len(intro_list) and attempts<(limit_attempts-1):
         attempts+=1
         print(f"INCORRECT! you have {limit_attempts-attempts} attempts left.")
         print(intro_list)
-        hangman()
+        hangman(attempts)
         if guesswordconsent() == "yes":
             if guessword() == cpu_chose:
                 correct_letters = len(intro_list)
@@ -243,7 +148,7 @@ else:
         else:
             attempts == 10
             print("YOU LOSE!!!")
-            hangman()
+            hangman(attempts)
 
     elif correct_letters==len(intro_list) and attempts <= limit_attempts:
         print("Congrats, you have won!!!!")
@@ -252,9 +157,3 @@ else:
         print("Maria , you have done something wrong")
 
 print("The correct word was: ", cpu_chose)
-
-
-
-
-
-
