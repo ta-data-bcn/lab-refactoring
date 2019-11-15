@@ -55,8 +55,8 @@ while playing == "Yes":
 
     money = ag.accion( deck, money , bet , bet_in_table , hand_player , hand_dealer )
 
-#function of accion again
 
+ # keep playing or not the game
     
     playing = input(f"\n You have {money} dollars. Do you want to keep playing? Answers with [Yes] or [No]."     )
     
@@ -64,11 +64,26 @@ while playing == "Yes":
 
         playing = input("\n You must answer with Yes or No, if you want to play or not.   ")
 
+# Cheating in the game ( funny fact )
     if money > 300:
         print ("\n The dealer catch you counting. They quick you out of the casino.")
+        
         money = 0
+        
         playing=="No"
+   
+   
+   #leave the game
+
     if playing == "No":
         print (f"\n Thank you for playing Blackjack. You leave with {money} dollars")
 
 
+
+
+'''Notas: 
+- tener en cuenta las frases a la hora del codigo, intentar tener una funcion 
+la cual puede repetir la frase con la condicion que uiero que se repita.
+- escribir mas en las descripciones del juego para que la gente pueda entenderlo mejor.
+- list comprehension
+- '''
