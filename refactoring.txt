@@ -1,0 +1,12 @@
+Refactoring and improving my first project:
+
+- included more error handling
+- corrected game: showing outcome of the game correctly now.
+
+
+Still to be improved: 
+- show key of cards and not the value
+- give the person the option to choose weather an A should be 1 or eleven
+- count wins and losses
+
+please find in blackjack-2.py
