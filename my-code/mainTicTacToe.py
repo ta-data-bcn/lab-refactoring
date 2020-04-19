@@ -7,6 +7,8 @@ Functions are imported from different Python scripts.
 
 # import randint function
 from random import randint
+# import negative function
+from numpy import negative
 # import functions from scripts
 import printPad
 import input_first_choice
