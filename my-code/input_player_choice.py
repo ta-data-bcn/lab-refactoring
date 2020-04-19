@@ -1,14 +1,16 @@
 
-# input player function (uses global variable: ticTacDict)
+from printPad import printPad
+
+# input player function
 # takes as input the choices of marked spaces by cpu and player
 # Error handling is very important on selecting a proper Tic Tac Toe:
 # 1) string typos are checked (case insensitive and strip spaces)
 # 2) must be a choice that hasn't been selected yet (cpu or player history)
 
-def input_player_choice(cpuHistory,playerHistory,gameDict=ticTacDict):
+def input_player_choice(cpuHistory,playerHistory,gameDict,defaultPad):
     
     print('This is the game now:')
-    printPad(cpuHistory,playerHistory)
+    printPad(cpuHistory,playerHistory,defaultPad)
     yourChoice = input("Choose your mark! (e.g: 'L' stands for 'Left') ")
 
     while True:

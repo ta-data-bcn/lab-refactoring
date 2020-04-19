@@ -1,8 +1,12 @@
 
+# import negative function
+from numpy import negative
+from determine_direction import determine_direction
+
 # this function verifies if there's a winner (three points in a line)
 # uses global variable: ticTacDict
 
-def determine_winner(movesHistory,gameDict=ticTacDict):
+def determine_winner(movesHistory,gameDict):
     nMoves = len(movesHistory)
     if nMoves >= 3:
         for i in range(nMoves):

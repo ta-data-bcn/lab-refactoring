@@ -1,10 +1,10 @@
 
-# pad printing function (uses global variable: defaultPad)
+# pad printing function
 # takes as input the choices of marked spaces by cpu and player
 # assigns an 'O' and 'X' marks for the player and cpu choices
 # the Tic Tac Toe pad is printed one row at a time from a list of lists
 
-def printPad(cpuHistory,playerHistory,pad=defaultPad):
+def printPad(cpuHistory,playerHistory,pad):
     nRows = len(pad)
     
     # check for the player options

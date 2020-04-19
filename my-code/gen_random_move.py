@@ -1,4 +1,7 @@
 
+# import randint function
+from random import randint
+
 # get a random choice for a cpu Tic Tac Toe move
 # takes as input the choices of marked spaces by cpu and player
 # Error handling is very important:
