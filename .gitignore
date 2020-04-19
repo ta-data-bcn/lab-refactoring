@@ -7,6 +7,8 @@
 
 # ignore py cache folder
 __pycache__
+# ignore py file global vars
+globalVars.py
 
 # Remove previous ipynb_checkpoints
 #   git rm -r .ipynb_checkpoints/
