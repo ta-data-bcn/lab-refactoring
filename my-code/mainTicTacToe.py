@@ -9,6 +9,17 @@ Functions are imported from different Python scripts.
 from random import randint
 # import negative function
 from numpy import negative
+
+# INITIALIZATION OF VARIABLES (needed as globals for compiling some functions)
+
+# Tic Tac Toe Pad
+defaultPad = [['Lt','t ','Rt'],['L ','m ','R '],['Lb','b ','Rb']]
+
+# Tic Tac Toe dictionary, keys from Pad, values are indexes (or coordinates)
+ticTacDict = {'LT':(0,0), 'T':(0,1), 'RT':(0,2),\
+              'L':(1,0), 'M':(1,1), 'R':(1,2),\
+              'LB':(2,0), 'B':(2,1), 'RB':(2,2)}
+
 # import functions from scripts
 import printPad
 import input_first_choice
@@ -21,17 +32,9 @@ import determine_winner
 
 # main code: TicTacToe!
 if __name__ == '__main__':
-    
-    # INITIALIZATION OF VARIABLES
-    
-    # Tic Tac Toe Pad
-    defaultPad = [['Lt','t ','Rt'],['L ','m ','R '],['Lb','b ','Rb']]
 
-    # Tic Tac Toe dictionary, keys from Pad, values are indexes (or coordinates)
-    ticTacDict = {'LT':(0,0), 'T':(0,1), 'RT':(0,2),\
-                  'L':(1,0), 'M':(1,1), 'R':(1,2),\
-                  'LB':(2,0), 'B':(2,1), 'RB':(2,2)}
-    
+    # INITIALIZATION OF VARIABLES
+
     # number of marks in Pad (initial zero)
     markedSpaces = 0
 
