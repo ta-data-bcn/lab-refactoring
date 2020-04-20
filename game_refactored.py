@@ -1,20 +1,8 @@
-import random
 from userName import username
+from chooseLevel import which_level
+import levels
+from cpuNumber import computer_number
 
-
-levels = {
-    "easy" : (4, 0, 10),
-    "medium" : (7, 0, 100),
-    "hard" : (10, -500, 500)
-}
-
-
-
-
-def computer_number(level):
-    number = random.randint( levels[level][1], levels[level][2] )
-    tries = levels[level][0]
-    return (number, tries)
 
 def guess_number(cpu):
     (number, tries) = cpu
